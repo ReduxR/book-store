@@ -19,7 +19,7 @@ public class SpringBootIntroApplication {
     }
     
     @Bean
-    CommandLineRunner commmandLineRunner() {
+    CommandLineRunner commandLineRunner() {
         return args -> {
             Book book = new Book();
             book.setTitle("Book");
