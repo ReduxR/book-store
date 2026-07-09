@@ -4,18 +4,16 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import mate.academy.exception.DataProcessingException;
 import mate.academy.model.Book;
 import mate.academy.repository.BookRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@RequiredArgsConstructor
 public class BookRepositoryImpl implements BookRepository {
     private final EntityManagerFactory factory;
-    
-    public BookRepositoryImpl(EntityManagerFactory factory) {
-        this.factory = factory;
-    }
     
     @Override
     public Book save(Book book) {
