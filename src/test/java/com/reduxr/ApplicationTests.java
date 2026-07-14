@@ -1,13 +1,13 @@
-package mate.academy.main;
+package com.reduxr;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringBootIntroApplicationTests {
-
+class ApplicationTests {
+    
     @Test
     void contextLoads() {
     }
-
+    
 }

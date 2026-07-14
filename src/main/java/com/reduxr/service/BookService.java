@@ -1,7 +1,7 @@
-package mate.academy.service;
+package com.reduxr.service;
 
+import com.reduxr.model.Book;
 import java.util.List;
-import mate.academy.model.Book;
 
 public interface BookService {
     Book save(Book book);

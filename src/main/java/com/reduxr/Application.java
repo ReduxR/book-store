@@ -1,8 +1,8 @@
-package mate.academy;
+package com.reduxr;
 
+import com.reduxr.model.Book;
+import com.reduxr.service.BookService;
 import java.math.BigDecimal;
-import mate.academy.model.Book;
-import mate.academy.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,12 +10,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class SpringBootIntroApplication {
+public class Application {
     @Autowired
     private BookService bookService;
     
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootIntroApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
     
     @Bean

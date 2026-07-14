@@ -1,13 +1,13 @@
-package mate.academy.repository.impl;
+package com.reduxr.repository.impl;
 
+import com.reduxr.exception.DataProcessingException;
+import com.reduxr.model.Book;
+import com.reduxr.repository.BookRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import mate.academy.exception.DataProcessingException;
-import mate.academy.model.Book;
-import mate.academy.repository.BookRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

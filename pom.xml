@@ -9,11 +9,9 @@
         <version>4.1.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>mate.academy</groupId>
-    <artifactId>intro</artifactId>
+    <groupId>com.reduxr</groupId>
+    <artifactId>book-store</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-intro</name>
-    <description>spring-boot-intro</description>
     <url/>
     <licenses>
         <license/>

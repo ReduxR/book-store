@@ -1,4 +1,4 @@
-package mate.academy.exception;
+package com.reduxr.exception;
 
 public class DataProcessingException extends RuntimeException {
     public DataProcessingException(String message) {

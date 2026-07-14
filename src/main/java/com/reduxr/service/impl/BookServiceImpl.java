@@ -1,10 +1,10 @@
-package mate.academy.service.impl;
+package com.reduxr.service.impl;
 
+import com.reduxr.model.Book;
+import com.reduxr.repository.BookRepository;
+import com.reduxr.service.BookService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import mate.academy.model.Book;
-import mate.academy.repository.BookRepository;
-import mate.academy.service.BookService;
 import org.springframework.stereotype.Service;
 
 @Service
