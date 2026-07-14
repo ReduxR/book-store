@@ -1,10 +1,13 @@
 package com.reduxr.service;
 
-import com.reduxr.model.Book;
+import com.reduxr.dto.BookDto;
+import com.reduxr.dto.CreateBookRequestDto;
 import java.util.List;
 
 public interface BookService {
-    Book save(Book book);
+    BookDto save(CreateBookRequestDto book);
     
-    List<Book> findAll();
+    List<BookDto> findAll();
+    
+    BookDto findById(Long id);
 }
