@@ -1,16 +1,12 @@
 package com.reduxr.dto;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.math.BigDecimal;
 import lombok.Data;
 
 @Data
-@JsonPropertyOrder(value = {"id", "title", "author", "isbn", "price", "description", "coverImage"})
-public class BookDto {
-    private Long id;
+public class UpdateBookRequestDto {
     private String title;
     private String author;
-    private String isbn;
     private BigDecimal price;
     private String description;
     private String coverImage;

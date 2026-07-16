@@ -2,6 +2,7 @@ package com.reduxr.service.impl;
 
 import com.reduxr.dto.BookDto;
 import com.reduxr.dto.CreateBookRequestDto;
+import com.reduxr.dto.UpdateBookRequestDto;
 import com.reduxr.exception.EntityNotFoundException;
 import com.reduxr.mapper.BookMapper;
 import com.reduxr.model.Book;
@@ -19,7 +20,7 @@ public class BookServiceImpl implements BookService {
     
     @Override
     public BookDto save(CreateBookRequestDto requestDto) {
-        Book book = repository.save(mapper.toModel(requestDto));
+        Book book = repository.save(mapper.toModelFromCreateBookRequest(requestDto));
         return mapper.toDto(book);
     }
     
@@ -32,8 +33,19 @@ public class BookServiceImpl implements BookService {
     
     @Override
     public BookDto findById(Long id) {
-        Book book = repository.findById(id)
+        return mapper.toDto(getBookOrThrow(id));
+    }
+    
+    @Override
+    public BookDto updateBook(Long id, UpdateBookRequestDto requestDto) {
+        Book book = getBookOrThrow(id);
+        mapper.updateModelFromDto(requestDto, book);
+        Book saved = repository.save(book);
+        return mapper.toDto(saved);
+    }
+    
+    private Book getBookOrThrow(Long id) {
+        return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Can't find book by id: " + id));
-        return mapper.toDto(book);
     }
 }
