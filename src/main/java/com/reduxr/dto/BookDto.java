@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import lombok.Data;
 
 @Data
-@JsonPropertyOrder(value = {"id", "title", "author", "isbn", "price", "description", "coverImage"})
+@JsonPropertyOrder("id")
 public class BookDto {
     private Long id;
     private String title;
