@@ -1,6 +1,7 @@
 package com.reduxr.controller;
 
 import com.reduxr.dto.BookDto;
+import com.reduxr.dto.BookSearchParametersDto;
 import com.reduxr.dto.CreateBookRequestDto;
 import com.reduxr.dto.UpdateBookRequestDto;
 import com.reduxr.service.BookService;
@@ -32,6 +33,11 @@ public class BookController {
     @GetMapping("{id}")
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.findById(id);
+    }
+    
+    @GetMapping("/search")
+    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
+        return bookService.findByParams(searchParameters);
     }
     
     @PostMapping
