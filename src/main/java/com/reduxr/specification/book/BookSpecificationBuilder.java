@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class BookSpecificationBuilder implements SpecificationBuilder<Book> {
     private final SpecificationProviderManager<Book> bookSpecificationProviderManager;
+    
     @Override
     public Specification<Book> build(BookSearchParametersDto searchParameters) {
         Specification<Book> specification = Specification.allOf();
