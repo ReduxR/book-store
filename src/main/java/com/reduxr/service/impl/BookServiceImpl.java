@@ -4,7 +4,6 @@ import com.reduxr.dto.BookDto;
 import com.reduxr.dto.BookSearchParametersDto;
 import com.reduxr.dto.CreateBookRequestDto;
 import com.reduxr.dto.UpdateBookRequestDto;
-import com.reduxr.exception.DataProcessingException;
 import com.reduxr.exception.EntityNotFoundException;
 import com.reduxr.mapper.BookMapper;
 import com.reduxr.model.Book;
@@ -51,10 +50,8 @@ public class BookServiceImpl implements BookService {
     
     @Override
     public void deleteBook(Long id) {
-        if (id == null) {
-            throw new DataProcessingException("Can't delete book with null id");
-        }
-        repository.deleteById(id);
+        Book book = getBookOrThrow(id);
+        repository.delete(book);
     }
     
     @Override
