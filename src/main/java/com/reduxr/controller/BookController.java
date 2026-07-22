@@ -1,13 +1,13 @@
 package com.reduxr.controller;
 
 import com.reduxr.dto.BookDto;
+import com.reduxr.dto.BookSearchParametersDto;
 import com.reduxr.dto.CreateBookRequestDto;
 import com.reduxr.dto.UpdateBookRequestDto;
 import com.reduxr.service.BookService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +34,11 @@ public class BookController {
         return bookService.findById(id);
     }
     
+    @GetMapping("/search")
+    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
+        return bookService.findByParams(searchParameters);
+    }
+    
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public BookDto createBook(@RequestBody CreateBookRequestDto requestDto) {
@@ -46,8 +51,8 @@ public class BookController {
     }
     
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
-        return ResponseEntity.noContent().build();
     }
 }

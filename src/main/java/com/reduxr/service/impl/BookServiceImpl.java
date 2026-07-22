@@ -1,16 +1,18 @@
 package com.reduxr.service.impl;
 
 import com.reduxr.dto.BookDto;
+import com.reduxr.dto.BookSearchParametersDto;
 import com.reduxr.dto.CreateBookRequestDto;
 import com.reduxr.dto.UpdateBookRequestDto;
-import com.reduxr.exception.DataProcessingException;
 import com.reduxr.exception.EntityNotFoundException;
 import com.reduxr.mapper.BookMapper;
 import com.reduxr.model.Book;
 import com.reduxr.repository.BookRepository;
 import com.reduxr.service.BookService;
+import com.reduxr.specification.book.BookSpecificationBuilder;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Service;
 public class BookServiceImpl implements BookService {
     private final BookRepository repository;
     private final BookMapper mapper;
+    private final BookSpecificationBuilder specificationBuilder;
     
     @Override
     public BookDto save(CreateBookRequestDto requestDto) {
@@ -47,10 +50,16 @@ public class BookServiceImpl implements BookService {
     
     @Override
     public void deleteBook(Long id) {
-        if (id == null) {
-            throw new DataProcessingException("Can't delete book with null id");
-        }
-        repository.deleteById(id);
+        Book book = getBookOrThrow(id);
+        repository.delete(book);
+    }
+    
+    @Override
+    public List<BookDto> findByParams(BookSearchParametersDto params) {
+        Specification<Book> specification = specificationBuilder.build(params);
+        return repository.findAll(specification).stream()
+                .map(mapper::toDto)
+                .toList();
     }
     
     private Book getBookOrThrow(Long id) {
