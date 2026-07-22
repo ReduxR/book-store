@@ -18,6 +18,6 @@ public class TitleSpecificationProvider implements SpecificationProvider<Book> {
     
     @Override
     public String getKey() {
-        return "title";
+        return TITLE_FIELD;
     }
 }

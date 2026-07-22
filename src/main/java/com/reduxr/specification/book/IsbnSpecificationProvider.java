@@ -18,6 +18,6 @@ public class IsbnSpecificationProvider implements SpecificationProvider<Book> {
     
     @Override
     public String getKey() {
-        return "isbn";
+        return ISBN_FIELD;
     }
 }
