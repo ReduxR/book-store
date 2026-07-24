@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Isbn {
-    String message() default "wrong format for ISBN";
+    String message() default "has wrong format";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
