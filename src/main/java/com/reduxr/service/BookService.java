@@ -4,13 +4,13 @@ import com.reduxr.dto.BookDto;
 import com.reduxr.dto.BookSearchParametersDto;
 import com.reduxr.dto.CreateBookRequestDto;
 import com.reduxr.dto.UpdateBookRequestDto;
-import java.util.List;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface BookService {
     BookDto save(CreateBookRequestDto book);
     
-    List<BookDto> findAll(Pageable pageable);
+    Page<BookDto> findAll(Pageable pageable);
     
     BookDto findById(Long id);
     
@@ -18,5 +18,5 @@ public interface BookService {
     
     void deleteBook(Long id);
     
-    List<BookDto> findByParams(BookSearchParametersDto params, Pageable pageable);
+    Page<BookDto> findByParams(BookSearchParametersDto params, Pageable pageable);
 }

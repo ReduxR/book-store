@@ -8,9 +8,9 @@ import com.reduxr.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,7 +32,7 @@ public class BookController {
     
     @Operation(summary = "Get all books", description = "Get a list of all books")
     @GetMapping
-    public List<BookDto> getAllBooks(@ParameterObject Pageable pageable) {
+    public Page<BookDto> getAllBooks(@ParameterObject Pageable pageable) {
         return bookService.findAll(pageable);
     }
     
@@ -44,7 +44,7 @@ public class BookController {
     
     @Operation(summary = "Search book by params", description = "Search a book by parameters")
     @GetMapping("/search")
-    public List<BookDto> searchBooks(
+    public Page<BookDto> searchBooks(
             BookSearchParametersDto searchParameters, 
             @ParameterObject Pageable pageable) {
         return bookService.findByParams(searchParameters, pageable);

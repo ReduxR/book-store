@@ -10,8 +10,8 @@ import com.reduxr.model.Book;
 import com.reduxr.repository.BookRepository;
 import com.reduxr.service.BookService;
 import com.reduxr.specification.book.BookSpecificationBuilder;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -30,10 +30,9 @@ public class BookServiceImpl implements BookService {
     }
     
     @Override
-    public List<BookDto> findAll(Pageable pageable) {
-        return repository.findAll(pageable).stream()
-                .map(mapper::toDto)
-                .toList();
+    public Page<BookDto> findAll(Pageable pageable) {
+        return repository.findAll(pageable)
+                .map(mapper::toDto);
     }
     
     @Override
@@ -56,11 +55,10 @@ public class BookServiceImpl implements BookService {
     }
     
     @Override
-    public List<BookDto> findByParams(BookSearchParametersDto params, Pageable pageable) {
+    public Page<BookDto> findByParams(BookSearchParametersDto params, Pageable pageable) {
         Specification<Book> specification = specificationBuilder.build(params);
-        return repository.findAll(specification, pageable).stream()
-                .map(mapper::toDto)
-                .toList();
+        return repository.findAll(specification, pageable)
+                .map(mapper::toDto);
     }
     
     private Book getBookOrThrow(Long id) {
