@@ -1,6 +1,6 @@
 package com.reduxr.specification.book;
 
-import com.reduxr.dto.BookSearchParametersDto;
+import com.reduxr.dto.book.BookSearchParametersDto;
 import com.reduxr.model.Book;
 import com.reduxr.specification.SpecificationBuilder;
 import com.reduxr.specification.SpecificationProviderManager;

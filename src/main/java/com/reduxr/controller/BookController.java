@@ -1,9 +1,9 @@
 package com.reduxr.controller;
 
-import com.reduxr.dto.BookDto;
-import com.reduxr.dto.BookSearchParametersDto;
-import com.reduxr.dto.CreateBookRequestDto;
-import com.reduxr.dto.UpdateBookRequestDto;
+import com.reduxr.dto.book.BookDto;
+import com.reduxr.dto.book.BookSearchParametersDto;
+import com.reduxr.dto.book.CreateBookRequestDto;
+import com.reduxr.dto.book.UpdateBookRequestDto;
 import com.reduxr.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Book management", description = "Endpoints for managing books")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/book-store/books")
 public class BookController {
     private final BookService bookService;
     

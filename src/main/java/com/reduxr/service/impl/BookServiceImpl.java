@@ -1,9 +1,9 @@
 package com.reduxr.service.impl;
 
-import com.reduxr.dto.BookDto;
-import com.reduxr.dto.BookSearchParametersDto;
-import com.reduxr.dto.CreateBookRequestDto;
-import com.reduxr.dto.UpdateBookRequestDto;
+import com.reduxr.dto.book.BookDto;
+import com.reduxr.dto.book.BookSearchParametersDto;
+import com.reduxr.dto.book.CreateBookRequestDto;
+import com.reduxr.dto.book.UpdateBookRequestDto;
 import com.reduxr.exception.EntityNotFoundException;
 import com.reduxr.mapper.BookMapper;
 import com.reduxr.model.Book;

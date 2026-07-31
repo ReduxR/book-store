@@ -1,9 +1,9 @@
 package com.reduxr.service;
 
-import com.reduxr.dto.BookDto;
-import com.reduxr.dto.BookSearchParametersDto;
-import com.reduxr.dto.CreateBookRequestDto;
-import com.reduxr.dto.UpdateBookRequestDto;
+import com.reduxr.dto.book.BookDto;
+import com.reduxr.dto.book.BookSearchParametersDto;
+import com.reduxr.dto.book.CreateBookRequestDto;
+import com.reduxr.dto.book.UpdateBookRequestDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
