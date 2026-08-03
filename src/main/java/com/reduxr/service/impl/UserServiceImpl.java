@@ -7,7 +7,6 @@ import com.reduxr.mapper.UserMapper;
 import com.reduxr.model.User;
 import com.reduxr.repository.UserRepository;
 import com.reduxr.service.UserService;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -19,15 +18,11 @@ public class UserServiceImpl implements UserService {
     
     @Override
     public UserResponseDto registerUser(UserRegistrationRequestDto registrationRequestDto) {
-        if (!userExists(registrationRequestDto.getEmail())) {
-            User saved = repository.save(mapper.toModel(registrationRequestDto));
-            return mapper.toDto(saved);
+        if (repository.existsByEmail(registrationRequestDto.getEmail())) {
+            throw new RegistrationException(String.format("User with email: %s already exists", 
+                    registrationRequestDto.getEmail()));
         }
-        throw new RegistrationException("User with given email already exists");
-    }
-    
-    private boolean userExists(String email) {
-        Optional<User> userByEmail = repository.findByEmail(email);
-        return userByEmail.isPresent();
+        User user = repository.save(mapper.toModel(registrationRequestDto));
+        return mapper.toDto(user);
     }
 }
