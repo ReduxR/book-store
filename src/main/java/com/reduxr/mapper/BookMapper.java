@@ -1,9 +1,9 @@
 package com.reduxr.mapper;
 
 import com.reduxr.config.MapperConfig;
-import com.reduxr.dto.BookDto;
-import com.reduxr.dto.CreateBookRequestDto;
-import com.reduxr.dto.UpdateBookRequestDto;
+import com.reduxr.dto.book.BookDto;
+import com.reduxr.dto.book.CreateBookRequestDto;
+import com.reduxr.dto.book.UpdateBookRequestDto;
 import com.reduxr.model.Book;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

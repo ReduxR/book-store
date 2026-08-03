@@ -1,4 +1,4 @@
-package com.reduxr.dto;
+package com.reduxr.dto.book;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.math.BigDecimal;
