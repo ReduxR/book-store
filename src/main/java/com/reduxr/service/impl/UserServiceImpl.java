@@ -14,9 +14,9 @@ import jakarta.transaction.Transactional;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
         
         Role role = roleRepository.findByName(RoleName.USER)
                 .orElseThrow(() ->
-                        new RegistrationException("default USER role is missing"));
+                        new RegistrationException("default RoleName.USER role is missing"));
         
         User user = mapper.toModel(registrationRequestDto);
         user.setRoles(Set.of(role));
