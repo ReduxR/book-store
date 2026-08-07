@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService {
         }
         
         Role role = roleRepository.findByName(RoleName.USER)
-                .orElseThrow(() ->
-                        new RegistrationException("default RoleName.USER role is missing"));
+                .orElseThrow(() -> new RegistrationException(
+                        "default " + RoleName.USER + " role is missing"));
         
         User user = mapper.toModel(registrationRequestDto);
         user.setRoles(Set.of(role));

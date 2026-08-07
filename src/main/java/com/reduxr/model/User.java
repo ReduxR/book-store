@@ -13,7 +13,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -49,13 +48,11 @@ public class User implements UserDetails {
     )
     private Set<Role> roles = new HashSet<>();
     
-    @NonNull
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
     }
     
-    @NonNull
     @Override
     public String getUsername() {
         return email;
