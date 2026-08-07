@@ -13,6 +13,7 @@ import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,18 +31,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookController {
     private final BookService bookService;
     
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @Operation(summary = "Get all books", description = "Get a list of all books")
     @GetMapping
     public Page<BookDto> getAllBooks(@ParameterObject Pageable pageable) {
         return bookService.findAll(pageable);
     }
     
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @Operation(summary = "Find book by id", description = "Find a book by its id")
     @GetMapping("{id}")
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.findById(id);
     }
     
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @Operation(summary = "Search book by params", description = "Search a book by parameters")
     @GetMapping("/search")
     public Page<BookDto> searchBooks(
@@ -50,6 +54,7 @@ public class BookController {
         return bookService.findByParams(searchParameters, pageable);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Create book", description = "Create a new book")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -57,6 +62,7 @@ public class BookController {
         return bookService.save(requestDto);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Update book", description = "Update parameters of an existing book")
     @PutMapping("/{id}")
     public BookDto updateBook(
@@ -65,6 +71,7 @@ public class BookController {
         return bookService.updateBook(id, requestDto);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Delete book", description = "Marks book as " 
             + "deleted and makes it unreachable for API (Can be accessed directly from DB only)")
     @DeleteMapping("{id}")
