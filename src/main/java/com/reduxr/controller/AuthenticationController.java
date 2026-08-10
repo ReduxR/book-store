@@ -32,6 +32,7 @@ public class AuthenticationController {
         return userService.registerUser(request);
     }
     
+    @Operation(summary = "Login", description = "Endpoint for user login")
     @GetMapping("/login")
     public UserLoginResponseDto login(@RequestBody @Valid UserLoginRequestDto request) {
         return authenticationService.authenticateUser(request);
