@@ -2,14 +2,12 @@ package com.reduxr.dto.book;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.math.BigDecimal;
-import java.util.List;
 import lombok.Data;
 
 @Data
 @JsonPropertyOrder("id")
-public class BookDto {
+public class BookDtoWithoutCategoryIds {
     private Long id;
-    private List<Long> categoryIds;
     private String title;
     private String author;
     private String isbn;

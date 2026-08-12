@@ -1,6 +1,7 @@
 package com.reduxr.controller;
 
 import com.reduxr.dto.book.BookDto;
+import com.reduxr.dto.book.BookDtoWithoutCategoryIds;
 import com.reduxr.dto.book.BookSearchParametersDto;
 import com.reduxr.dto.book.CreateBookRequestDto;
 import com.reduxr.dto.book.UpdateBookRequestDto;
@@ -34,7 +35,7 @@ public class BookController {
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @Operation(summary = "Get all books", description = "Get a list of all books")
     @GetMapping
-    public Page<BookDto> getAllBooks(@ParameterObject Pageable pageable) {
+    public Page<BookDtoWithoutCategoryIds> getAllBooks(@ParameterObject Pageable pageable) {
         return bookService.findAll(pageable);
     }
     
