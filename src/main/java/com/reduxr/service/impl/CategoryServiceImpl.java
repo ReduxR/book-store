@@ -51,6 +51,7 @@ public class CategoryServiceImpl implements CategoryService {
     
     private Category getCategoryOrThrow(Long id) {
         return categoryRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Can't find book by id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Can't find category " 
+                        + "by id: " + id));
     }
 }
