@@ -5,8 +5,10 @@ import com.reduxr.dto.user.UserResponseDto;
 import com.reduxr.exception.RegistrationException;
 import com.reduxr.mapper.UserMapper;
 import com.reduxr.model.Role;
+import com.reduxr.model.ShoppingCart;
 import com.reduxr.model.User;
 import com.reduxr.repository.RoleRepository;
+import com.reduxr.repository.ShoppingCartRepository;
 import com.reduxr.repository.UserRepository;
 import com.reduxr.security.RoleName;
 import com.reduxr.service.UserService;
@@ -21,6 +23,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final ShoppingCartRepository shoppingCartRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper mapper;
     
@@ -41,6 +44,11 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         
         User savedUser = userRepository.save(user);
+        
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setUser(savedUser);
+        shoppingCartRepository.save(shoppingCart);
+        
         return mapper.toDto(savedUser);
     }
 }
