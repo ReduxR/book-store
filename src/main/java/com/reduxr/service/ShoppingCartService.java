@@ -1,16 +1,18 @@
 package com.reduxr.service;
 
-import com.reduxr.dto.cart.CartItemDto;
 import com.reduxr.dto.cart.CreateCartItemRequestDto;
 import com.reduxr.dto.cart.ShoppingCartDto;
 import com.reduxr.dto.cart.UpdateCartItemRequestDto;
+import com.reduxr.model.User;
 
 public interface ShoppingCartService {
-    CartItemDto saveCartItem(CreateCartItemRequestDto requestDto);
+    void setShoppingCartToUser(User user);
+            
+    ShoppingCartDto saveCartItem(CreateCartItemRequestDto requestDto);
     
     ShoppingCartDto getShoppingCart();
     
-    CartItemDto updateCartItem(Long id, UpdateCartItemRequestDto requestDto);
+    ShoppingCartDto updateCartItem(Long id, UpdateCartItemRequestDto requestDto);
     
     void deleteCartItem(Long id);
 }

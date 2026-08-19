@@ -1,6 +1,5 @@
 package com.reduxr.controller;
 
-import com.reduxr.dto.cart.CartItemDto;
 import com.reduxr.dto.cart.CreateCartItemRequestDto;
 import com.reduxr.dto.cart.ShoppingCartDto;
 import com.reduxr.dto.cart.UpdateCartItemRequestDto;
@@ -40,14 +39,14 @@ public class CartController {
     @Operation(summary = "Add cart item", description = "Create new cart item in shopping cart")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CartItemDto addItemToCart(@RequestBody @Valid CreateCartItemRequestDto requestDto) {
+    public ShoppingCartDto addItemToCart(@RequestBody @Valid CreateCartItemRequestDto requestDto) {
         return shoppingCartService.saveCartItem(requestDto);
     }
     
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @Operation(summary = "Update item quantity", description = "Update cart item quantity by id")
     @PutMapping("/items/{cartItemId}")
-    public CartItemDto updateItemQuantityInCart(
+    public ShoppingCartDto updateItemQuantityInCart(
             @PathVariable Long cartItemId, 
             @RequestBody @Valid UpdateCartItemRequestDto requestDto) {
         return shoppingCartService.updateCartItem(cartItemId, requestDto);
