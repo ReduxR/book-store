@@ -27,3 +27,6 @@ target/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
+
+### MacOS metadata files ###
+.DS_store
