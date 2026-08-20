@@ -11,5 +11,5 @@ public class CreateCartItemRequestDto {
     private Long bookId;
     
     @Positive
-    private Integer quantity;
+    private int quantity;
 }
