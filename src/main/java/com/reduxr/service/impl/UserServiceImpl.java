@@ -9,6 +9,7 @@ import com.reduxr.model.User;
 import com.reduxr.repository.RoleRepository;
 import com.reduxr.repository.UserRepository;
 import com.reduxr.security.RoleName;
+import com.reduxr.service.ShoppingCartService;
 import com.reduxr.service.UserService;
 import jakarta.transaction.Transactional;
 import java.util.Set;
@@ -16,15 +17,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final ShoppingCartService shoppingCartService;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper mapper;
     
-    @Transactional
     @Override
     public UserResponseDto registerUser(UserRegistrationRequestDto registrationRequestDto) {
         if (userRepository.existsByEmail(registrationRequestDto.getEmail())) {
@@ -41,6 +43,8 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         
         User savedUser = userRepository.save(user);
+        shoppingCartService.setShoppingCartToUser(savedUser);
+        
         return mapper.toDto(savedUser);
     }
 }
