@@ -10,6 +10,6 @@ public class AddressValidator implements ConstraintValidator<Address, String> {
     
     @Override
     public boolean isValid(String address, ConstraintValidatorContext context) {
-        return Pattern.compile(ADDRESS_REGEX).matcher(address).matches();
+        return address != null && Pattern.compile(ADDRESS_REGEX).matcher(address).matches();
     }
 }
