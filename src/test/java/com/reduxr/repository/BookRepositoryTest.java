@@ -29,10 +29,10 @@ public class BookRepositoryTest {
     
     @Test
     @DisplayName("Find books by their category id")
-    @Sql(scripts = "classpath:database/books/insert-books-with-categories.sql",
+    @Sql(scripts = "classpath:database/insert-books-with-categories.sql",
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
     )
-    @Sql(scripts = "classpath:database/books/remove-books-with-categories.sql",
+    @Sql(scripts = "classpath:database/remove-books-with-categories.sql",
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD
     )
     void findByCategoryId_CategoryExists_ReturnsTwoBookIds() {
@@ -60,10 +60,10 @@ public class BookRepositoryTest {
     
     @Test
     @DisplayName("Find book by id with its categories")
-    @Sql(scripts = "classpath:database/books/insert-books-with-categories.sql",
+    @Sql(scripts = "classpath:database/insert-books-with-categories.sql",
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
     )
-    @Sql(scripts = "classpath:database/books/remove-books-with-categories.sql",
+    @Sql(scripts = "classpath:database/remove-books-with-categories.sql",
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD
     )
     void findById_BookExists_ReturnsBookWithCategoryIds() {
