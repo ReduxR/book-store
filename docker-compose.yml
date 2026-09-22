@@ -12,15 +12,17 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQLDB_ROOT_PASSWORD}
       MYSQL_PASSWORD: ${MYSQLDB_PASSWORD}
     
+    volumes:
+      - mysql_data:/var/lib/mysql
+    
     ports:
       - ${MYSQLDB_LOCAL_PORT}:${MYSQLDB_DOCKER_PORT}
     
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "--silent" ]
       interval: 10s
       timeout: 10s
       retries: 5
-      
   
   app:
     build: .
@@ -29,7 +31,7 @@ services:
     
     depends_on:
       mysqldb:
-          condition: service_healthy
+        condition: service_healthy
     
     env_file:
       - .env
@@ -43,7 +45,10 @@ services:
               "security.jwt.expiration": "${JWT_EXPIRATION}"
             }'
       JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:${DEBUG_PORT}"
-      
+    
     ports:
       - ${SPRING_LOCAL_PORT}:${SPRING_DOCKER_PORT}
       - ${DEBUG_PORT}:${DEBUG_PORT}
+
+volumes:
+  mysql_data:

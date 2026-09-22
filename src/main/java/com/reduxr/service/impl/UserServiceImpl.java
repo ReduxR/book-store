@@ -17,8 +17,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-@Transactional
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDto registerUser(UserRegistrationRequestDto registrationRequestDto) {
         if (userRepository.existsByEmail(registrationRequestDto.getEmail())) {
-            throw new RegistrationException(String.format("User with email: %s already exists", 
+            throw new RegistrationException(String.format("User with email: %s already exists",
                     registrationRequestDto.getEmail()));
         }
         
