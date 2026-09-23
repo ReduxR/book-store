@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "Order management", description = "Endpoints for managing user orders")
+@PreAuthorize("hasRole('USER')")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/orders")
@@ -30,29 +31,25 @@ public class OrderController {
     private final OrderService orderService;
     
     @Operation(summary = "Get all user orders")
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping
     public Page<OrderDto> getOrders(@ParameterObject Pageable pageable) {
         return orderService.getCurrentUserOrders(pageable);
     }
     
     @Operation(summary = "Get order items by order id")
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("/{orderId}/items")
     public List<OrderItemDto> getOrderItems(@PathVariable Long orderId) {
         return orderService.getOrderItems(orderId);
     }
     
     @Operation(summary = "Get order item by order id and id")
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("/{orderId}/items/{id}")
-    public OrderItemDto getOrderItem(@PathVariable Long orderId, 
+    public OrderItemDto getOrderItem(@PathVariable Long orderId,
                                      @PathVariable Long id) {
         return orderService.getOrderItem(orderId, id);
     }
     
     @Operation(summary = "Create new order")
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @PostMapping
     public OrderDto createOrder(@RequestBody @Valid CreateOrderRequestDto requestDto) {
         return orderService.createOrder(requestDto);
